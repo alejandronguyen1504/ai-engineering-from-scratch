@@ -65,6 +65,8 @@ Equivalent to: P(A and B) = P(A) * P(B)
 
 Coin flips are independent. Drawing cards without replacement is not.
 
+# đọc tới đây
+
 ### Probability Mass Functions vs Probability Density Functions
 
 Discrete random variables have a probability mass function (PMF). Each outcome has a specific probability that you can read off directly.
