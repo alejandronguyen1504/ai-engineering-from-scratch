@@ -1,3 +1,5 @@
+import math
+
 class Vector:
     def __init__(self, components):
         self.components = list(components)
@@ -107,7 +109,17 @@ def gram_schmidt(vectors):
     # 4. If the resulting vector is close to zero (magnitude < 1e-10), ignore it.
     # 5. Otherwise, normalize it and add it to the orthonormal list.
     # 6. Return the list of orthonormal vectors.
-    pass
+    result_vectors = []
+    
+    for vector in vectors: 
+        i_vector = vector 
+        for o_vector in result_vectors: 
+            i_vector = i_vector - i_vector.project_onto(o_vector)
+        if (i_vector.magnitude() < 1e-10): 
+            continue
+        else: 
+            result_vectors.append(i_vector.normalize())
+    return result_vectors
 
 
 class Matrix:
@@ -120,7 +132,14 @@ class Matrix:
         # Implement matrix multiplication (the @ operator).
         # 1. Check if 'other' is an instance of Vector. If so, perform Matrix-Vector multiplication and return a Vector.
         # 2. Otherwise, perform Matrix-Matrix multiplication and return a new Matrix.
-        pass
+        if (isinstance(other, Vector)): 
+            result_vector = [other.dot(Vector(row)) for row in self.rows]
+            return Vector(result_vector)
+        
+
+            
+
+
 
     def transpose(self):
         # TODO:
