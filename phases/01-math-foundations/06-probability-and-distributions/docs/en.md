@@ -65,7 +65,6 @@ Equivalent to: P(A and B) = P(A) * P(B)
 
 Coin flips are independent. Drawing cards without replacement is not.
 
-# đọc tới đây
 
 ### Probability Mass Functions vs Probability Density Functions
 

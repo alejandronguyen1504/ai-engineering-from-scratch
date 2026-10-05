@@ -9,7 +9,19 @@ Please create an interactive practice scaffold Jupyter Notebook for me directly 
 
 Follow these rules strictly:
 
-1. **Core Steps (Strictly match `## Build It` in docs)**:
+1. **Intuition Block (Warm-up & Mental Model at the Beginning)**:
+   - Place this block right after the Setup cell and before `Step 1`.
+   - Purpose: Give the learner an intuitive preview of the algorithms and code structures they will build, building familiarity with new functions and mechanics before coding from scratch.
+   - It must contain:
+     * A **Markdown Cell**:
+       - Title: `## Intuition & Quick Walkthrough`
+       - Brief conceptual summary connecting the core mathematical ideas to the programming workflow.
+     * A **Code Cell (Fully Working, Runnable Sandbox)**:
+       - Provide a compact, self-contained working demo summarizing the core operations of the lesson.
+       - **CRITICAL RULE - COMPLETELY DIFFERENT NUMBERS / DATA**: All variables, test inputs, distributions, and numbers MUST be completely different from the actual `docs/en.md` examples and the subsequent Step test cases (e.g. use different toy values, different dimensions, different seeds, or different probabilities).
+       - The learner can run this cell immediately to observe output shapes, flow of data, and behavior without spoiling the exact step solutions.
+
+2. **Core Steps (Strictly match `## Build It` in docs)**:
    - Cross-reference with the `## Build It` section in [path/to/docs/en.md].
    - Divide into sequential Steps (Step 1, Step 2, ...) matching the docs 1-to-1.
    - Each Step must contain:
@@ -23,14 +35,14 @@ Follow these rules strictly:
        - **Failing / Unimplemented / Error**: Print a red exclamation mark `❗` clearly showing actual output vs expected (e.g. `❗ factorial(5) = None (Expected: 120)`).
        - Wrap tests safely in `try...except` and handle `None` gracefully so running before implementation never crashes the cell with unhandled `TypeError`.
 
-2. **Extra Concepts Section (From Reference Solution)**:
+3. **Extra Concepts Section (From Reference Solution)**:
    - Compare the author's reference solution in [path/to/solution.py] against the `## Build It` section in [path/to/docs/en.md].
    - Any function that the author implemented in the reference code but is NOT covered in the `## Build It` steps of the docs MUST be placed into an Extra section at the end of the notebook.
    - Sub-split each extra concept individually (`Extra 1: ...`, `Extra 2: ...`), each having:
      * A Markdown cell with brief overview and LaTeX mathematical formula (if the body implements math).
      * A Code cell with scaffold (`pass`, `# TODO:`, `# Hint:`, `# Example:`) and immediate visual test verification (`✅` / `❗`).
 
-3. **Scaffold & Hint Pedagogical Quality (NO SPOON-FEEDING)**:
+4. **Scaffold & Hint Pedagogical Quality (NO SPOON-FEEDING)**:
    - Extract exact signatures, parameters, and type hints from the solution.
    - Replace all implementation logic with `pass`.
    - Inside each function:
@@ -39,7 +51,7 @@ Follow these rules strictly:
      * `# Hint:` explains algorithmic logic flow, math formula (in general mathematical notation, not Python code), and edge cases.
    - **CRITICAL ANTI-PATTERN TO AVOID**: NEVER provide raw Python one-liner code in hints/TODOs (e.g. NEVER write `# Hint: Return p if k == 1 else 1-p`). The learner must translate the math and logic into Python themselves.
 
-4. **Formatting & Language**:
+5. **Formatting & Language**:
    - Write all Markdown cells, code comments, and test printouts in English.
    - Include a Setup Cell at the very top (imports, seed, and a lightweight `check_test(name, actual, expected, tol=1e-3)` helper for standardized `✅` / `❗` visual test verification).
    - Write the valid JSON `.ipynb` notebook directly to [path/to/build.ipynb] so I can start practicing immediately.
