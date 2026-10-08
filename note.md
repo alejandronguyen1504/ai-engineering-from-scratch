@@ -51,7 +51,42 @@ Follow these rules strictly:
      * `# Hint:` explains algorithmic logic flow, math formula (in general mathematical notation, not Python code), and edge cases.
    - **CRITICAL ANTI-PATTERN TO AVOID**: NEVER provide raw Python one-liner code in hints/TODOs (e.g. NEVER write `# Hint: Return p if k == 1 else 1-p`). The learner must translate the math and logic into Python themselves.
 
-5. **Formatting & Language**:
+5. **Authentic APIs - Never Use Fake Mock Doubles**:
+   - When `docs/en.md` demonstrates real production libraries (such as Hugging Face `transformers`, `torch`, `sacrebleu`, `sentencepiece`, etc.), **REPLICATE the real library calls and APIs directly**.
+   - **STRICTLY FORBIDDEN**: NEVER invent synthetic mock/recording classes (such as `RecordingTokenizer`, `RecordingModel`, `RecordingAgent`) that intercept calls or hardcode dummy return values (e.g. `[[11, 12]]` or `["Les chats courent."]`). 
+   - Real learning requires authentic interactions with production tools and genuine data structures.
+
+6. **User Consent for Heavy Downloads & Imports**:
+   - **MANDATORY PERMISSION CHECK**: Whenever a step requires downloading or importing large files, model weights, checkpoints, or datasets (e.g. > 100 MB from Hugging Face Hub, torch hub, or external URLs), the mentor/assistant **MUST explicitly ask for the user's consent first**.
+   - Clearly inform the user of:
+     * The exact download size (e.g. ~2.4 GB for NLLB-200-distilled-600M).
+     * The expected disk storage location (e.g. `~/.cache/huggingface/hub/`).
+     * The estimated RAM/VRAM footprint during inference.
+   - Always offer lighter alternative options (e.g. smaller ~300MB models, quantized variants, or running on cloud APIs) so the user is in full control of their machine's storage and bandwidth.
+
+7. **Clear Visual Section Boundaries in Every Code Cell**:
+   - Every code cell with exercises must have prominent, explicit section banners separating test fixtures, student code, and automated tests:
+     ```python
+     # ==============================================================================
+     # SETUP / FIXTURES (Do not modify - if applicable)
+     # ==============================================================================
+     ...
+
+     # ==============================================================================
+     # YOUR IMPLEMENTATION
+     # ==============================================================================
+     def my_function(...):
+         ### YOUR CODE HERE ###
+         pass
+         ### END CODE ###
+
+     # ==============================================================================
+     # TESTS & VERIFICATION
+     # ==============================================================================
+     run_check(...)
+     ```
+   - This ensures the learner never confuses test fixtures or helper harnesses with the code they are supposed to implement.
+8. **Formatting & Language**:
    - Write all Markdown cells, code comments, and test printouts in English.
    - Include a Setup Cell at the very top (imports, seed, and a lightweight `check_test(name, actual, expected, tol=1e-3)` helper for standardized `✅` / `❗` visual test verification).
    - Write the valid JSON `.ipynb` notebook directly to [path/to/build.ipynb] so I can start practicing immediately.
